@@ -19,7 +19,8 @@ public class EntryPoint
         }
         catch (Exception ex)
         {
-            throw new Exception("Erro no Script Capturado com Sucesso!", ex);
+            MessageBox.Show($"Erro no Script Capturado com Sucesso!\n\n{ex.Message}");
+            vegas.Exit();
         }
         finally
         {
