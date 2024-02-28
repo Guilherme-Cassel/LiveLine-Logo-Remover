@@ -1,38 +1,21 @@
 ﻿using ScriptPortal.Vegas;
 using System;
-using TestScript;
+using System.IO;
+using System.Windows;
 
 namespace LiveLineLogoRemover;
 
 public class EntryPoint
 {
+    public static MainScreen MainScreen { get; set; } = new MainScreen();
     public static Vegas Vegas { get; private set; }
-    public static UserSettings UserSettings { get; set; } = new("", "", 1.0);
+    public static UserSettings UserSettings { get; set; }
     public void FromVegas(Vegas vegas)
     {
         try
         {
-            Input formInput = new();
-            formInput.ShowDialog();
-
-            if (formInput.UserSettings is null)
-            {
-                System.Windows.Forms.MessageBox.Show("Operação Cancelada!");
-                return;
-            }
-
             Vegas = vegas;
-            UserSettings = formInput.UserSettings;
-
-            VegasVideo BaseVideo = new(UserSettings.ImportPath, true);
-            BaseVideo.ApplyUserSetting();
-
-            VegasVideo EffectsVideo = new(UserSettings.ImportPath, false);
-            EffectsVideo.ApplyUserSetting();
-
-            LiveLineVideoMaker.RemoveLogo(EffectsVideo);
-
-            RenderVideo();
+            MainScreen.ShowDialog();
         }
         catch (Exception ex)
         {
@@ -43,18 +26,28 @@ public class EntryPoint
             vegas.Exit();
         }
     }
-    private void RenderVideo()
+    public static void RunScript()
     {
-        string renderName = "MAGIX AVC/AAC MP4";
-        string renderTemplateName = "Internet HD 1080p 59.94 fps (NVidia NVENC)";
+        VegasVideo BaseVideo = new(UserSettings.ImportPath, true);
+        BaseVideo.ApplyUserSetting();
 
-        RenderTemplate renderTemplate = Vegas.Renderers.FindByName(renderName).Templates.FindByName(renderTemplateName);
-        RenderArgs args = new (Vegas.Project);
-        args.RenderTemplate = renderTemplate;
-        args.OutputFile = UserSettings.ExportPath;
+        VegasVideo EffectsVideo = new(UserSettings.ImportPath, false);
+        EffectsVideo.ApplyUserSetting();
 
-        Vegas.Render(args);
+        LiveLineVideoMaker.RemoveLogo(EffectsVideo);
 
-        System.Windows.Forms.MessageBox.Show("Rendering Complete!");
+        VideoRenderer.RenderVideo();
+
+        ClearVegasEditingTrash();
+    }
+
+    private static void ClearVegasEditingTrash()
+    {
+        string importedVideoProjectSettingsFile = UserSettings.ImportPath + ".sfk";
+
+        if (File.Exists(importedVideoProjectSettingsFile))
+        {
+            File.Delete(importedVideoProjectSettingsFile);
+        }
     }
 }

@@ -6,17 +6,24 @@ using System.Windows.Forms;
 
 namespace LiveLineLogoRemover;
 
-public partial class Input : Form
+public partial class MainScreen : Form
 {
-    public UserSettings UserSettings { get; set; } = null!;
-    public Input()
+    public MainScreen()
     {
         InitializeComponent();
+
         BrowseImport.Click += BrowseImport_Click;
         BrowseExport.Click += BrowseExport_Click;
+        FormClosing += MainScreen_FormClosing;
 
         ComboBoxSpeed.SelectedIndex = 3;
     }
+
+    private void MainScreen_FormClosing(object sender, FormClosingEventArgs e)
+    {
+        if (EntryPoint.UserSettings is null)
+            MessageBox.Show("Operação Cancelada!");
+    }   
 
     private void BrowseExport_Click(object sender, EventArgs e)
     {
@@ -52,7 +59,9 @@ public partial class Input : Form
             return;
         }
 
-        UserSettings = MountUserSetting();
+        EntryPoint.UserSettings = MountUserSetting();
+
+        EntryPoint.RunScript();
 
         Close();
     }

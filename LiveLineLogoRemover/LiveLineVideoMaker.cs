@@ -43,7 +43,7 @@ public static class LiveLineVideoMaker
         return effect;
     }
 
-    private static void SetLiveLinePanCropFrame(this VideoEvent videoEvent)
+    private static VideoMotionKeyframe SetLiveLinePanCropFrame(this VideoEvent videoEvent)
     {
         float projectWidth = videoEvent.Project.Video.Width;
         float projectHeight = videoEvent.Project.Video.Height;
@@ -56,5 +56,7 @@ public static class LiveLineVideoMaker
 
         keyFrame.ScaleBy(panCropScale);
         keyFrame.MoveBy(panCropMoveBy);
+
+        return keyFrame;
     }
 }

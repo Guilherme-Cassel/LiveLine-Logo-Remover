@@ -8,8 +8,8 @@
     <ProjectGuid>{0002E29B-320C-445A-A7DC-A40F6F9AA620}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TestScript</RootNamespace>
-    <AssemblyName>TestScript</AssemblyName>
+    <RootNamespace>LiveLineLogoRemover</RootNamespace>
+    <AssemblyName>LiveLineLogoRemover</AssemblyName>
     <TargetFrameworkVersion>v4.8.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -32,6 +32,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="PresentationFramework" />
     <Reference Include="ScriptPortal.Vegas">
       <HintPath>..\..\..\..\..\..\..\Program Files\VEGAS\VEGAS Pro 15.0\ScriptPortal.Vegas.dll</HintPath>
     </Reference>
@@ -48,26 +49,23 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EntryPoint.cs" />
-    <Compile Include="Input.cs">
+    <Compile Include="MainScreen.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Input.Designer.cs">
-      <DependentUpon>Input.cs</DependentUpon>
+    <Compile Include="MainScreen.Designer.cs">
+      <DependentUpon>MainScreen.cs</DependentUpon>
     </Compile>
     <Compile Include="LiveLineVideoMaker.cs" />
     <Compile Include="UserSettings.cs" />
     <Compile Include="MediaManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="VegasVideo.cs" />
+    <Compile Include="VideoRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Input.resx">
-      <DependentUpon>Input.cs</DependentUpon>
+    <EmbeddedResource Include="MainScreen.resx">
+      <DependentUpon>MainScreen.cs</DependentUpon>
     </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Properties\DataSources\Input.datasource" />
-    <None Include="Properties\DataSources\UserSettings.datasource" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
