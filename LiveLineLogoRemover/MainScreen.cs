@@ -14,15 +14,23 @@ public partial class MainScreen : Form
 
         BrowseImport.Click += BrowseImport_Click;
         BrowseExport.Click += BrowseExport_Click;
-        FormClosing += MainScreen_FormClosing;
+        FormClosing += CloseQuestion;
+
+        KeyPreview = true;
+        KeyDown += (a,s) => { if (s.KeyCode == Keys.Escape) Close(); };
 
         ComboBoxSpeed.SelectedIndex = 3;
     }
 
-    private void MainScreen_FormClosing(object sender, FormClosingEventArgs e)
+    private void CloseQuestion(object sender, FormClosingEventArgs e)
     {
-        if (EntryPoint.UserSettings is null)
-            MessageBox.Show("Operação Cancelada!");
+        bool close = MessageBox.Show(
+            "Deseja Cancelar a Operação?",
+            "Confirmação",
+            MessageBoxButtons.YesNo,
+            MessageBoxIcon.Question) == DialogResult.Yes;
+
+        e.Cancel = !close;
     }   
 
     private void BrowseExport_Click(object sender, EventArgs e)
