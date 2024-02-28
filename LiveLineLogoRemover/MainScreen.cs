@@ -14,21 +14,9 @@ public partial class MainScreen : Form
 
         BrowseImport.Click += BrowseImport_Click;
         BrowseExport.Click += BrowseExport_Click;
-        FormClosing += CloseQuestion;
 
         ComboBoxSpeed.SelectedIndex = 3;
-    }
-
-    private void CloseQuestion(object sender, FormClosingEventArgs e)
-    {
-        bool close = MessageBox.Show(
-            "Deseja Cancelar a Operação?",
-            "Confirmação",
-            MessageBoxButtons.YesNo,
-            MessageBoxIcon.Question) == DialogResult.Yes;
-
-        e.Cancel = !close;
-    }   
+    } 
 
     private void BrowseExport_Click(object sender, EventArgs e)
     {
