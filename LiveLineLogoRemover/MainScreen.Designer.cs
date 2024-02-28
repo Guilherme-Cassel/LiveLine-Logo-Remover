@@ -183,7 +183,6 @@
             this.MaximizeBox = false;
             this.Name = "MainScreen";
             this.ShowIcon = false;
-            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Video Settings";
             this.statusStrip.ResumeLayout(false);

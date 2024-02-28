@@ -1,6 +1,7 @@
 ﻿using ScriptPortal.Vegas;
 using System;
 using System.IO;
+using System.Runtime.InteropServices;
 using System.Windows;
 
 namespace LiveLineLogoRemover;
@@ -15,6 +16,7 @@ public class EntryPoint
         try
         {
             Vegas = vegas;
+            ShowWindow(vegas.MainWindow.Handle, 0);
             MainScreen.ShowDialog();
         }
         catch (Exception ex)
@@ -39,4 +41,7 @@ public class EntryPoint
 
         VideoRenderer.RenderVideo();
     }
+
+    [DllImport("user32.dll")]
+    static extern bool ShowWindow(IntPtr hWnd, int nCmdShow);
 }
