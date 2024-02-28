@@ -181,7 +181,6 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.TextBoxMediaImportPath);
             this.MaximizeBox = false;
-            this.MinimizeBox = false;
             this.Name = "MainScreen";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
