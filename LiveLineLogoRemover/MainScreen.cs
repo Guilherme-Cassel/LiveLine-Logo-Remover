@@ -16,9 +16,6 @@ public partial class MainScreen : Form
         BrowseExport.Click += BrowseExport_Click;
         FormClosing += CloseQuestion;
 
-        KeyPreview = true;
-        KeyDown += (a,s) => { if (s.KeyCode == Keys.Escape) Close(); };
-
         ComboBoxSpeed.SelectedIndex = 3;
     }
 

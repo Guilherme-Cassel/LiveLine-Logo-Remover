@@ -180,7 +180,6 @@
             this.Controls.Add(this.BrowseImport);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.TextBoxMediaImportPath);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "MainScreen";

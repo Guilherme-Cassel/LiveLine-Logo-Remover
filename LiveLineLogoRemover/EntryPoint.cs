@@ -38,17 +38,5 @@ public class EntryPoint
         LiveLineVideoMaker.RemoveLogo(EffectsVideo);
 
         VideoRenderer.RenderVideo();
-
-        ClearVegasEditingTrash();
-    }
-
-    private static void ClearVegasEditingTrash()
-    {
-        string importedVideoProjectSettingsFile = UserSettings.ImportPath + ".sfk";
-
-        if (File.Exists(importedVideoProjectSettingsFile))
-        {
-            File.Delete(importedVideoProjectSettingsFile);
-        }
     }
 }
