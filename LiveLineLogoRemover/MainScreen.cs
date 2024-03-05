@@ -92,9 +92,4 @@ public partial class MainScreen : Form
 
         return settings;
     }
-
-    public void Exit()
-    {
-        Close();
-    }
 }

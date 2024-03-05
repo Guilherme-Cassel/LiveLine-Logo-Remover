@@ -40,6 +40,8 @@ public class EntryPoint
         LiveLineVideoMaker.RemoveLogo(EffectsVideo);
 
         VideoRenderer.RenderVideo();
+
+        MainScreen.Close();
     }
 
     [DllImport("user32.dll")]

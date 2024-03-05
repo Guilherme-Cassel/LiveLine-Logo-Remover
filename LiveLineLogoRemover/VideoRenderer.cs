@@ -63,8 +63,12 @@ namespace LiveLineLogoRemover
 
         private static void Vegas_RenderFinished(object sender, RenderStatusEventArgs args)
         {
-            EntryPoint.MainScreen.ProgressLabel.Text = "Complete!";
-            MessageBox.Show("Rendering Finished!");
+            string labelText = (args.Status == RenderStatus.Complete) ? "Complete!" : "Cancelled!";
+
+            EntryPoint.MainScreen.ProgressLabel.Text = labelText;
+
+            if (args.Status == RenderStatus.Complete && args.Result == 1)
+                MessageBox.Show("Rendering Finished!");
         }
     }
 }
