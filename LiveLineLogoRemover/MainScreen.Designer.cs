@@ -35,18 +35,20 @@
             this.label2 = new System.Windows.Forms.Label();
             this.TextBoxMediaExportPath = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.InteractWithScript = new System.Windows.Forms.Button();
+            this.ButtonInteractWithScript = new System.Windows.Forms.Button();
             this.ComboBoxSpeed = new System.Windows.Forms.ComboBox();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.ProgressBar = new System.Windows.Forms.ToolStripProgressBar();
             this.ProgressLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.statusStrip.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // TextBoxMediaImportPath
             // 
             this.TextBoxMediaImportPath.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TextBoxMediaImportPath.Location = new System.Drawing.Point(26, 51);
+            this.TextBoxMediaImportPath.Location = new System.Drawing.Point(22, 40);
             this.TextBoxMediaImportPath.Name = "TextBoxMediaImportPath";
             this.TextBoxMediaImportPath.Size = new System.Drawing.Size(600, 29);
             this.TextBoxMediaImportPath.TabIndex = 0;
@@ -55,7 +57,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.label1.Location = new System.Drawing.Point(26, 23);
+            this.label1.Location = new System.Drawing.Point(22, 12);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(148, 21);
             this.label1.TabIndex = 1;
@@ -64,7 +66,7 @@
             // BrowseImport
             // 
             this.BrowseImport.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.BrowseImport.Location = new System.Drawing.Point(632, 51);
+            this.BrowseImport.Location = new System.Drawing.Point(628, 40);
             this.BrowseImport.Name = "BrowseImport";
             this.BrowseImport.Size = new System.Drawing.Size(90, 29);
             this.BrowseImport.TabIndex = 2;
@@ -74,7 +76,7 @@
             // BrowseExport
             // 
             this.BrowseExport.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.BrowseExport.Location = new System.Drawing.Point(632, 127);
+            this.BrowseExport.Location = new System.Drawing.Point(628, 116);
             this.BrowseExport.Name = "BrowseExport";
             this.BrowseExport.Size = new System.Drawing.Size(90, 29);
             this.BrowseExport.TabIndex = 5;
@@ -85,7 +87,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.label2.Location = new System.Drawing.Point(26, 99);
+            this.label2.Location = new System.Drawing.Point(22, 88);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(187, 21);
             this.label2.TabIndex = 4;
@@ -94,7 +96,7 @@
             // TextBoxMediaExportPath
             // 
             this.TextBoxMediaExportPath.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TextBoxMediaExportPath.Location = new System.Drawing.Point(26, 127);
+            this.TextBoxMediaExportPath.Location = new System.Drawing.Point(22, 116);
             this.TextBoxMediaExportPath.Name = "TextBoxMediaExportPath";
             this.TextBoxMediaExportPath.Size = new System.Drawing.Size(600, 29);
             this.TextBoxMediaExportPath.TabIndex = 3;
@@ -103,22 +105,21 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.label3.Location = new System.Drawing.Point(27, 193);
+            this.label3.Location = new System.Drawing.Point(23, 182);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(154, 21);
             this.label3.TabIndex = 6;
             this.label3.Text = "Velocidade do Vídeo:";
             // 
-            // InteractWithScript
+            // ButtonInteractWithScript
             // 
-            this.InteractWithScript.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.InteractWithScript.Location = new System.Drawing.Point(632, 265);
-            this.InteractWithScript.Name = "InteractWithScript";
-            this.InteractWithScript.Size = new System.Drawing.Size(107, 46);
-            this.InteractWithScript.TabIndex = 11;
-            this.InteractWithScript.Text = "Start";
-            this.InteractWithScript.UseVisualStyleBackColor = true;
-            this.InteractWithScript.Click += new System.EventHandler(this.StartScript_Click);
+            this.ButtonInteractWithScript.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.ButtonInteractWithScript.Location = new System.Drawing.Point(631, 267);
+            this.ButtonInteractWithScript.Name = "ButtonInteractWithScript";
+            this.ButtonInteractWithScript.Size = new System.Drawing.Size(107, 46);
+            this.ButtonInteractWithScript.TabIndex = 11;
+            this.ButtonInteractWithScript.Text = "Start";
+            this.ButtonInteractWithScript.UseVisualStyleBackColor = true;
             // 
             // ComboBoxSpeed
             // 
@@ -135,7 +136,7 @@
             "1,5",
             "1,7",
             "2,0"});
-            this.ComboBoxSpeed.Location = new System.Drawing.Point(187, 189);
+            this.ComboBoxSpeed.Location = new System.Drawing.Point(183, 178);
             this.ComboBoxSpeed.Name = "ComboBoxSpeed";
             this.ComboBoxSpeed.Size = new System.Drawing.Size(107, 29);
             this.ComboBoxSpeed.TabIndex = 7;
@@ -149,7 +150,7 @@
             this.statusStrip.Location = new System.Drawing.Point(0, 285);
             this.statusStrip.Name = "statusStrip";
             this.statusStrip.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            this.statusStrip.Size = new System.Drawing.Size(743, 31);
+            this.statusStrip.Size = new System.Drawing.Size(741, 31);
             this.statusStrip.SizingGrip = false;
             this.statusStrip.TabIndex = 12;
             this.statusStrip.Visible = false;
@@ -165,21 +166,30 @@
             this.ProgressLabel.Size = new System.Drawing.Size(70, 26);
             this.ProgressLabel.Text = "Rendering...";
             // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.TextBoxMediaImportPath);
+            this.panel1.Controls.Add(this.ButtonInteractWithScript);
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.ComboBoxSpeed);
+            this.panel1.Controls.Add(this.BrowseImport);
+            this.panel1.Controls.Add(this.label3);
+            this.panel1.Controls.Add(this.TextBoxMediaExportPath);
+            this.panel1.Controls.Add(this.BrowseExport);
+            this.panel1.Controls.Add(this.label2);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(741, 316);
+            this.panel1.TabIndex = 13;
+            // 
             // MainScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(743, 316);
+            this.ClientSize = new System.Drawing.Size(741, 316);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.statusStrip);
-            this.Controls.Add(this.InteractWithScript);
-            this.Controls.Add(this.ComboBoxSpeed);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.BrowseExport);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.TextBoxMediaExportPath);
-            this.Controls.Add(this.BrowseImport);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.TextBoxMediaImportPath);
             this.MaximizeBox = false;
             this.Name = "MainScreen";
             this.ShowIcon = false;
@@ -187,6 +197,8 @@
             this.Text = "Video Settings";
             this.statusStrip.ResumeLayout(false);
             this.statusStrip.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -201,10 +213,11 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox TextBoxMediaExportPath;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button InteractWithScript;
         private System.Windows.Forms.ComboBox ComboBoxSpeed;
         internal System.Windows.Forms.ToolStripProgressBar ProgressBar;
         internal System.Windows.Forms.StatusStrip statusStrip;
         internal System.Windows.Forms.ToolStripStatusLabel ProgressLabel;
+        internal System.Windows.Forms.Button ButtonInteractWithScript;
+        private System.Windows.Forms.Panel panel1;
     }
 }

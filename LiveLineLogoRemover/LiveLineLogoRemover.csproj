@@ -56,6 +56,7 @@
       <DependentUpon>MainScreen.cs</DependentUpon>
     </Compile>
     <Compile Include="LiveLineVideoMaker.cs" />
+    <Compile Include="CustomRenderTemplates.cs" />
     <Compile Include="UserSettings.cs" />
     <Compile Include="MediaManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

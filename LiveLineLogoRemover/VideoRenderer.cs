@@ -1,8 +1,8 @@
 ﻿using ScriptPortal.Vegas;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.Diagnostics;
+using System.IO;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -10,28 +10,47 @@ namespace LiveLineLogoRemover
 {
     public class VideoRenderer
     {
+        internal static RenderArgs args = new();
         public static void RenderVideo()
         {
             EntryPoint.Vegas.RenderStarted += Vegas_RenderStarted;
             EntryPoint.Vegas.RenderFinished += Vegas_RenderFinished;
             EntryPoint.Vegas.RenderProgress += Vegas_RenderProgress;
 
-            string renderName = "MAGIX AVC/AAC MP4";
-            string renderTemplateName = "Internet HD 1080p 59.94 fps (NVidia NVENC)";
+            const double MinimumRelativeSpeedFor60fps = 0.7;
+            RenderTemplate renderTemplate = (EntryPoint.UserSettings.RelativeSpeed >= MinimumRelativeSpeedFor60fps) ? CustomRenderTemplates.FullHD_60fps_10mbps : CustomRenderTemplates.FullHD_30fps_10mbps;
 
-            RenderTemplate renderTemplate = EntryPoint.Vegas.Renderers.FindByName(renderName).Templates.FindByName(renderTemplateName);
-
-            RenderArgs args = new(EntryPoint.Vegas.Project)
+            args = new(EntryPoint.Vegas.Project)
             {
                 RenderTemplate = renderTemplate,
                 OutputFile = EntryPoint.UserSettings.ExportPath,
-                CancelRender = false
             };
 
             EntryPoint.Vegas.Render(args);
         }
 
-        public static void Vegas_RenderProgress(object sender, RenderStatusEventArgs args)
+        private static void Vegas_RenderStarted(object sender, EventArgs e)
+        {
+            MessageBox.Show("Rendering Will Start!");
+
+            EntryPoint.MainScreen.ButtonInteractWithScript.Text = "Cancel";
+            EntryPoint.MainScreen.ButtonInteractWithScript.Click += Vegas_RenderCancel;
+            EntryPoint.MainScreen.ButtonInteractWithScript.Location = new(EntryPoint.MainScreen.ButtonInteractWithScript.Location.X, EntryPoint.MainScreen.ButtonInteractWithScript.Location.Y - EntryPoint.MainScreen.statusStrip.Height);
+            EntryPoint.MainScreen.statusStrip.Visible = true;
+        }
+
+        private static void Vegas_RenderCancel(object sender, EventArgs e)
+        {
+            var vegasHandle = EntryPoint.Vegas.MainWindow.Handle;
+
+            [DllImport("user32.dll", CharSet = CharSet.Auto)]
+            static extern IntPtr SendMessage(IntPtr hWnd, UInt32 Msg, IntPtr wParam, IntPtr lParam);
+            const UInt32 WM_CLOSE = 0x0010;
+
+            SendMessage(vegasHandle, WM_CLOSE, IntPtr.Zero, IntPtr.Zero);
+        }
+
+        private static void Vegas_RenderProgress(object sender, RenderStatusEventArgs args)
         {
             void method()
             {
@@ -40,12 +59,6 @@ namespace LiveLineLogoRemover
 
             if (EntryPoint.MainScreen.InvokeRequired) EntryPoint.MainScreen.Invoke(method);
             else method();
-        }
-
-        private static void Vegas_RenderStarted(object sender, EventArgs e)
-        {
-            MessageBox.Show("Rendering Started!");
-            EntryPoint.MainScreen.statusStrip.Visible = true;
         }
 
         private static void Vegas_RenderFinished(object sender, RenderStatusEventArgs args)

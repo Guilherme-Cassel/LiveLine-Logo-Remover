@@ -14,9 +14,15 @@ public partial class MainScreen : Form
 
         BrowseImport.Click += BrowseImport_Click;
         BrowseExport.Click += BrowseExport_Click;
+        ButtonInteractWithScript.Click += InteractWithScript_Click;
+
+#if DEBUG
+        TextBoxMediaImportPath.Text = "C:\\Users\\guilherme.cassel\\Desktop\\LiveLine Test Video - Trim.mp4";
+        TextBoxMediaExportPath.Text = "C:\\Users\\guilherme.cassel\\Desktop\\bunda.mp4";
+#endif
 
         ComboBoxSpeed.SelectedIndex = 3;
-    } 
+    }
 
     private void BrowseExport_Click(object sender, EventArgs e)
     {
@@ -44,8 +50,12 @@ public partial class MainScreen : Form
         }
     }
 
-    private void StartScript_Click(object sender, EventArgs e)
+    private void InteractWithScript_Click(object sender, EventArgs e)
     {
+        if (sender is Button button)
+            if (button.Text == "Cancel")
+                return;
+
         if (string.IsNullOrEmpty(TextBoxMediaImportPath.Text) || string.IsNullOrEmpty(TextBoxMediaExportPath.Text) || string.IsNullOrEmpty(ComboBoxSpeed.SelectedItem.ToString()))
         {
             MessageBox.Show("Preencha Todos os Campos!!");
@@ -55,17 +65,41 @@ public partial class MainScreen : Form
         EntryPoint.UserSettings = MountUserSetting();
 
         EntryPoint.RunScript();
-
-        Close();
     }
 
     public UserSettings MountUserSetting()
     {
-        return new
-            (
-            TextBoxMediaImportPath.Text,
-            TextBoxMediaExportPath.Text,
-            Double.Parse(ComboBoxSpeed.SelectedItem.ToString())
-            );
+        UserSettings settings = new
+        (
+        TextBoxMediaImportPath.Text,
+        TextBoxMediaExportPath.Text,
+        Double.Parse(ComboBoxSpeed.SelectedItem.ToString())
+        );
+
+        int index = 1;
+        string newExportPath = settings.ExportPath;
+        while (File.Exists(newExportPath))
+        {
+            string directory = Path.GetDirectoryName(settings.ExportPath);
+
+            string fileNameWithoutExtension = Path.GetFileNameWithoutExtension(settings.ExportPath);
+
+            string modifiedFileName = fileNameWithoutExtension + $" - {index}";
+
+            string extension = Path.GetExtension(settings.ExportPath);
+
+            newExportPath = Path.Combine(directory, modifiedFileName + extension);
+
+            index++;
+        }
+        settings.ExportPath = newExportPath;
+        TextBoxMediaExportPath.Text = newExportPath;
+
+        return settings;
+    }
+
+    public void Exit()
+    {
+        Close();
     }
 }
