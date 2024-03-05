@@ -16,11 +16,6 @@ public partial class MainScreen : Form
         BrowseExport.Click += BrowseExport_Click;
         ButtonInteractWithScript.Click += InteractWithScript_Click;
 
-#if DEBUG
-        TextBoxMediaImportPath.Text = "C:\\Users\\guilherme.cassel\\Desktop\\LiveLine Test Video - Trim.mp4";
-        TextBoxMediaExportPath.Text = "C:\\Users\\guilherme.cassel\\Desktop\\bunda.mp4";
-#endif
-
         ComboBoxSpeed.SelectedIndex = 3;
     }
 
